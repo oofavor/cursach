@@ -12,6 +12,9 @@ public class LambdaTest {
 
     private By headerElements = By.cssSelector("h1,h2,h3,h4,h5,h6");
     private By bodyElement = By.cssSelector("body");
+    private By counterElement = By.cssSelector(".ng-binding");
+    private By inputElement = By.id("sampletodotext");
+    private By formSubmitButton = By.id("addbutton");
 
     public void openPage() {
         driver.get("https://lambdatest.github.io/sample-todo-app/");
@@ -44,23 +47,24 @@ public class LambdaTest {
     }
 
     public int getAmountOfUncheckedTaskElements() {
-        String str = driver.findElement(By.cssSelector(".ng-binding")).getText();
+        String str = driver.findElement(counterElement).getText();
 
         return Integer.parseInt(str.split(" of")[0]);
     }
 
-    public LambdaTest insertTaskElement(String name) {
-        driver
-                .findElement(By.id("sampletodotext"))
-                .sendKeys(name);
-
-        driver.findElement(By.id("addbutton")).click();
-        return this;
-    }
-
     public int getTotalAmountOfTaskElements() {
-        String str = driver.findElement(By.cssSelector(".ng-binding")).getText();
+        String str = driver.findElement(counterElement).getText();
 
         return Integer.parseInt(str.split(" of ")[1].split(" ")[0]);
     }
+
+    public LambdaTest insertTaskElement(String name) {
+        driver
+                .findElement(inputElement)
+                .sendKeys(name);
+
+        driver.findElement(formSubmitButton).click();
+        return this;
+    }
+
 }
