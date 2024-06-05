@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class LambdaTest {
+public class LambdaTestPage {
     WebDriver driver = WebDriveSingleton.getInstance();
 
     private By headerElements = By.cssSelector("h1,h2,h3,h4,h5,h6");
@@ -38,7 +38,7 @@ public class LambdaTest {
                 .getAttribute("class");
     }
 
-    public LambdaTest selectTaskElement(int num) {
+    public LambdaTestPage selectTaskElement(int num) {
         driver
                 .findElement(By.cssSelector("input" + "[name=\"li" + num + "\"]"))
                 .click();
@@ -58,7 +58,7 @@ public class LambdaTest {
         return Integer.parseInt(str.split(" of ")[1].split(" ")[0]);
     }
 
-    public LambdaTest insertTaskElement(String name) {
+    public LambdaTestPage insertTaskElement(String name) {
         driver
                 .findElement(inputElement)
                 .sendKeys(name);

@@ -1,7 +1,6 @@
 package task1;
 
-import org.example.task1.pages.LambdaTest;
-import org.junit.jupiter.api.BeforeAll;
+import org.example.task1.pages.LambdaTestPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +8,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LambdaTestTest {
-    private final LambdaTest page = new LambdaTest();
+public class LambdaTestPageTest {
+    private final LambdaTestPage page = new LambdaTestPage();
 
     @BeforeEach
     public void openPage() {
@@ -54,6 +53,7 @@ public class LambdaTestTest {
 
         int amountAfter = page.getAmountOfUncheckedTaskElements();
         int totalAmountAfter = page.getTotalAmountOfTaskElements();
+
         assertTrue(
                 amountBefore < amountAfter,
                 "Inserting new task didn't increase unchecked amount"
