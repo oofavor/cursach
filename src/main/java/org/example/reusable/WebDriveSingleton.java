@@ -17,5 +17,4 @@ public class WebDriveSingleton {
         public static WebDriverWait getWait() {
             return new WebDriverWait(driver, Duration.ofSeconds(10));
         }
-
 }
