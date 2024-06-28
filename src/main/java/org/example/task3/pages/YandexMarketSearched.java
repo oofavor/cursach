@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class YandexMarketSearched {
@@ -17,16 +18,24 @@ public class YandexMarketSearched {
     By filterResale = By.cssSelector("*[data-filter-value-id=\"resale_resale\"]");
     By loadingState = By.cssSelector("*[data-auto=\"SerpStatic-loader\"]");
 
-    public void selectFirstSearches(int num) {
+
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
+    public List<LaptopInfo> selectFirstSearches(int num) {
         List<WebElement> elementList = driver.findElements(listOnSale);
+        List<LaptopInfo> list = new ArrayList<LaptopInfo>();
         for (int i = 0; i < num; i++) {
             WebElement current = elementList.get(i);
+            String name = current.findElement(itemTitle).getText();
+            String price = current.findElement(itemPrice).getText();
+            boolean isResale = !current.findElements(itemIsUsed).isEmpty();
 
-            System.out.println(current.findElement(itemTitle).getText());
-            System.out.println(current.findElement(itemPrice).getText());
-            System.out.println(current.findElements(itemIsUsed).isEmpty());
+            LaptopInfo laptopInfo = new LaptopInfo(name, price, isResale);
+            list.add(laptopInfo);
         }
 
+        return list;
     }
 
     public void clickShowOnlyUsed() {

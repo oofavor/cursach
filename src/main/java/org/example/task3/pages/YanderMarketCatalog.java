@@ -13,6 +13,7 @@ public class YanderMarketCatalog {
     By laptopTab = By.xpath("//*[text()='Ноутбуки']");
 
     public void openComputerAndLaptopsTab() {
+        WebDriveSingleton.waitTillAppear(laptopCategory);
         WebElement computersTab = driver.findElement(laptopCategory);
 
         Actions action = new Actions(driver);
@@ -20,6 +21,7 @@ public class YanderMarketCatalog {
     }
 
     public YandexMarketSearched openLaptopPage() {
+        WebDriveSingleton.waitTillAppear(laptopTab);
         driver.findElement(laptopTab).click();
 
         return new YandexMarketSearched();

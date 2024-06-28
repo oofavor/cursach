@@ -18,6 +18,10 @@ public class YandexMarketPage {
         driver.get("https://market.yandex.ru/");
     }
 
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
+
     public YanderMarketCatalog openCatalog() {
         driver.findElement(catalogButton).click();
         WebDriveSingleton.getWait().until( d -> !d.findElements(catalogDiv).isEmpty() );
